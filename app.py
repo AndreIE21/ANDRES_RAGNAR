@@ -95,6 +95,10 @@ async def analytic(request: Request):
 async def list(request: Request):
     return templates.TemplateResponse("listing.html", {"request": request})
 
+@app.get("/getstarted", response_class=HTMLResponse)
+async def list(request: Request):
+    return templates.TemplateResponse("getstarted.html", {"request": request})
+
 
 ### Landlord 
 

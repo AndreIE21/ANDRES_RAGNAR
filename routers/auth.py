@@ -134,7 +134,7 @@ async def login_for_access_token(response: Response, form_data: OAuth2PasswordRe
 
 @router.get("/", response_class=HTMLResponse)
 async def authentication_page(request: Request):
-    return templates.TemplateResponse("addlisting_new.html", {"request":request})
+    return templates.TemplateResponse("getstarted.html", {"request":request})
 
 @router.post("/", response_class=HTMLResponse)
 async def login(request:Request, db:Session = Depends(get_db)):
@@ -188,7 +188,7 @@ async def register_user(request: Request,
     db.commit()
 
     msg = "User created with success"
-    return templates.TemplateResponse("addlisting_new.html", {"request": request, "msg": msg})
+    return templates.TemplateResponse("getstarted.html", {"request": request, "msg": msg})
 
 
 
