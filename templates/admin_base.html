@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html data-theme="corporate" class="scroll-smooth"></html>
+  <head>
+      {% block head %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.15.2/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+
+  <body class="max-w-md scrollbar-hide">
+<!-- Navbar -->
+    <div class="navbar bg-base-200 mx-auto px-4">
+      <div class="navbar-start">
+      <label for="my-drawer" class="btn btn-md btn-outline btn-primary normal-case text-lg drawer-button"
+      >Navigate</label
+    >
+    </div>
+    <div class="navbar-end">
+      <img class="w-16" src="https://uploads-ssl.webflow.com/6285112b60af067f1b3f5075/6285478bf3941965ba43c862_logo_Zeichenfla%CC%88che%201.png" alt="Farewell Logo"
+      >
+    </div>
+  </div>
+  
+<!-- Sidebar -->
+    <div class="drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content px-4 pt-4 mx-auto">
+
+{% block content %}
+<!-- Page content here -->
+{% endblock %}
+
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+        <ul class="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
+          
+          <!-- Sidebar content here -->
+          <!-- Navigation on top
+             <li><p class="text-2xl text-primary">Navigation</p></li>
+          -->
+          {% block nav_list %}
+          <!-- navlist here -->
+          {% endblock %}
+
+        </ul>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    {% block script %}
+    {% endblock%}
+  </body>
+</html>

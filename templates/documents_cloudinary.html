@@ -1,0 +1,60 @@
+<!DOCTYPE html> {% extends "user_admin_base.html" %}{% block title %}Documents{%
+    endblock %} {% block content %}
+    
+    <h1 class="text-3xl text-primary text-center mb-3">My Documents</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+    <div class="card card-compact w-80 bg-300 border shadow-2xl">
+      <div class="ml-3 mr-3">
+        <div class="mt-4">
+          <label class="label">
+            <span class="label-text text-xl">Upload a Your File (PDF)</span>
+          </label>
+          <input
+            name="pdfdocument"
+            class="block w-full text-sm rounded-lg border border-primary"
+            type="file"
+            accept="application/pdf"
+            required
+          />
+        </div>
+      </div>
+      <div class="ml-3 mr-3">
+      <select
+      name="filetype"
+      class="select select-bordered mt-3 select-primary select-sm w-full rounded-lg"
+      required
+    >
+      <option selected>Document Category</option>
+      <option>Proof of work</option>
+      <option>Bank Statement</option>
+      <option>Guarantors</option>
+      <option>Other</option>
+    </select>
+    <input type="text" name="filename" placeholder="File name" class="input input-bordered mt-3 input-sm w-full max-w-xs rounded-lg" required/>
+    <button class="btn btn-primary mt-5 normal-case w-full" type="submit">
+      Upload Document
+    </button>
+    </div>
+    </form>
+      <br />
+    
+      <div class="ml-3 mb-4">
+        {% if documents %}
+        <h1 class="text text-xl mb-2">Uploaded Files:</h1>
+        {% for document in documents %}
+        <h1 class="text text-lg text-primary">{{ document["filetype"] }}</h1>
+        <a
+        href="{{ document["pdf_url"] }}"
+        target = "_blank"
+        class="text-secondary underline mb-2"
+        >{{ document["filename"] }}</a
+      >
+      {% endfor %}
+      {% else %}
+      <h1 class="text text-lg text-primary mb-2">No files uploaded yet</h1>
+      {% endif %}
+      </div>
+    </div>
+    
+    {% endblock content %}

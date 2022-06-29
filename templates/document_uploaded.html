@@ -1,0 +1,17 @@
+<!DOCTYPE html> {% extends "user_admin_base.html" %}{% block title %}Documents{%
+    endblock %} {% block content %}
+    
+    <h1 class="text-3xl text-primary text-center mb-3">My Documents</h1>
+    
+    <div class="ml-3 mb-4">
+      <h1 class="text text-xl mb-2">Successfully Uploaded Files:</h1>
+      <h1 class="text text-lg text-primary mb-2">{{ filetype }}</h1>
+      <a
+      href="{{ pdf_url }}"
+      target = "_blank"
+      class="text-secondary underline mb-2"
+      >{{ filename }}</a
+    </div>
+    </div>
+    
+    {% endblock content %}

@@ -1,0 +1,268 @@
+<!DOCTYPE html> {% extends "landlord_admin_base.html" %} {% block title %}Add
+Listing{% endblock %} {% block content %}
+
+<div class="card-body -mt-5 -ml-5 -mr-5">
+  <h1 class="text-2xl text-center text-primary">Add Listing</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    <!-- Address here -->
+
+    <label class="label">
+      <span class="label-text">Address of the listing</span>
+    </label>
+    <input
+      name="address"
+      type="text"
+      placeholder="Enter address"
+      class="input input-bordered input-primary w-full"
+      required
+    />
+
+    <!-- City here -->
+
+    <label class="label">
+      <span class="label-text">City of the listing</span>
+    </label>
+    <input
+      name="city"
+      type="text"
+      placeholder="Enter city"
+      class="input input-bordered input-primary w-full"
+      required
+    />
+
+    <!-- Rent here -->
+
+    <label class="label">
+      <span class="label-text">Rent amount (in Euros)</span>
+    </label>
+    <input
+      name="rent"
+      type="number"
+      placeholder="Enter rent amount"
+      class="input input-bordered input-primary w-full"
+      required
+    />
+
+    <!-- Agency fees & deposit here -->
+
+    <div class="form-control">
+      <label class="cursor-pointer label mt-3">
+        <span class="label-text text-lg">No agency fees & deposit</span>
+        <input
+          type="checkbox"
+          class="checkbox checkbox-secondary"
+          disabled
+          checked
+        />
+      </label>
+    </div>
+
+    <!-- information text-box here -->
+    <label class="label">
+      <span class="label-text">Information about the listing</span>
+    </label>
+
+    <textarea
+      name="listing_info"
+      class="textarea textarea-primary w-full"
+      placeholder="Enter Information"
+      required
+    ></textarea>
+
+    <!-- textbox end -->
+
+    <!-- Basic Characteristics start -->
+
+    <label class="label">
+      <span class="label-text">Add Basic Characteristics</span>
+    </label>
+    <div class="grid grid-cols-2 gap-4">
+      <input
+        name="squaremetres"
+        type="number"
+        placeholder="Squaremetres of the area"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+        required
+      />
+
+      {% for room in ["rooms", "bedrooms", "bathrooms"] %}
+      <input
+        name="{{ room
+      }}"
+        type="number"
+        placeholder="Number of {{ room }}"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+        required
+      />
+      {% endfor %}
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Furnished</span>
+          <input
+            name="furnished"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Kitchen Equipped</span>
+          <input
+            name="equipped"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+    </div>
+
+    <!-- Basic Characteristics end -->
+
+    <!-- Building Characteristics start -->
+
+    <label class="label">
+      <span class="label-text">Add Building Characteristics</span>
+    </label>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="ml-1">
+        <span class="label-text text-xs">Select Floor</span>
+        <select
+          name="floor"
+          class="select select-bordered select-primary select-xs w-full max-w-xs"
+          required
+        >
+          <option selected>0</option>
+          {% for floor in [1, 2, 3, 4, 5, 6] %}
+          <option>{{ floor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="ml-1">
+        <span class="label-text text-xs">Inside/Outside</span>
+        <select
+          name="inside"
+          class="select select-bordered select-primary select-xs w-full max-w-xs"
+        >
+          <option selected>Inside</option>
+          <option>Outside</option>
+        </select>
+      </div>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Doorman</span>
+          <input
+            name="doorman"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Elevator</span>
+          <input
+            name="elevator"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+    </div>
+
+    <!-- Building Characteristics end -->
+
+    <!-- Energy consumption start -->
+
+    <label class="label">
+      <span class="label-text">Energy Consumption</span>
+    </label>
+    <div class="grid grid-cols-2 gap-4">
+      <select
+        name="energy_label"
+        class="select select-bordered select-primary select-xs w-full max-w-xs"
+      >
+        <option selected class="bg-green-900">A</option>
+        <option class="bg-green-600">B</option>
+        <option class="bg-green-400">C</option>
+        <option class="bg-yellow-400">D</option>
+        <option class="bg-yellow-600">E</option>
+        <option class="bg-yellow-800">F</option>
+        <option class="bg-red-600">G</option>
+      </select>
+      <input
+        name="energy_consumption"
+        type="number"
+        placeholder="Consumption in kWh/m² year"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+        required
+      />
+    </div>
+
+    <!-- Energy consumption end -->
+
+    <!-- Image upload start -->
+    <div class="mt-4">
+      <label class="label">
+        <span class="label-text text-lg text-primary"
+          >Upload Multiple Images</span
+        >
+      </label>
+      <input
+        name="images"
+        class="block w-full text-sm rounded-lg border border-primary"
+        id="multiple_files"
+        type="file"
+        accept="image/*"
+        multiple
+        required
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Upload in High Quality</span>
+        <input
+          name="highresimage"
+          type="checkbox"
+          class="toggle toggle-primary"
+        />
+      </label>
+    </div>
+
+    <!-- Image upload end -->
+
+    <!-- video upload  -->
+    <div class="">
+      <label class="label">
+        <span class="label-text text-lg text-primary">Upload a Video</span>
+      </label>
+      <input
+        name="video"
+        class="block w-full text-sm rounded-lg border border-primary"
+        type="file"
+        accept="video/*"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Upload in High Quality</span>
+        <input
+          name="highresvideo"
+          type="checkbox"
+          class="toggle toggle-primary"
+        />
+      </label>
+    </div>
+
+    <!-- Image upload end -->
+
+    <button class="btn btn-primary mt-5 normal-case w-full" type="submit">
+      Add listing
+    </button>
+  </form>
+</div>
+
+{% endblock %}

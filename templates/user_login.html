@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="POST" action="/auth_user">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <img
+        class="w-16"
+        src="https://uploads-ssl.webflow.com/6285112b60af067f1b3f5075/6285478bf3941965ba43c862_logo_Zeichenfla%CC%88che%201.png"
+        alt="Farewell Logo"
+      />
+      <h1 class="text-2xl text-center text-primary">
+        User Login
+      </h1>
+      <input
+        name="username"
+        type="text"
+        placeholder="Enter your username"
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+
+      <input
+        name="password"
+        type="password"
+        placeholder="Enter your password"
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary mt-2" type="submit">Login</button>
+      </div>
+      <a
+        href="/user_signup"
+        class="underline text-left ml-2 mb-2 -mt-12 mr-32"
+        >Not a User yet? Signup</a
+      >
+    </div>
+  </div>
+</form>
+<h1 class="text-lg text-center text-primary">
+{% if msg %}
+{{ msg }}
+{% endif %}
+</h1>
+<div class="text-center mt-2">
+  <a href="/landlord_login" class="text-secondary underline">I am a Landord</a>
+</div>
+{% endblock content %}
+
+

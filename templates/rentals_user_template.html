@@ -1,0 +1,54 @@
+<!DOCTYPE html> {% extends "user_admin_base.html" %}{% block content %}
+
+<!-- Loop for rentals start -->
+
+{% for listing in listings %}
+{% set listing_index = loop.index %}
+<!-- Card content 1 -->
+<div class="card card-compact max-w-sm bg-300 border shadow-2xl">
+  <div class="carousel carousel-center p-4 space-x-4 bg-gray-100 rounded-box">
+    <!-- Carousel content start -->
+    {% for img_url in listing["img_urls"].split(", ") %}
+    {% set image_index = loop.index %}
+    <div class="carousel-item">
+      <label for="my-modal-{{listing_index}}-{{image_index}}">
+      <img src="{{ img_url }}" class="rounded-box h-32" />
+    </label>
+        <!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-{{listing_index}}-{{image_index}}" class="modal-toggle" />
+<label for="my-modal-{{listing_index}}-{{image_index}}" class="modal cursor-pointer place-content-center">
+  <label class="modal-box relative" for="">
+    <p class="text text-primary mb-2 -mt-4">{{ listing["address"] }}, {{ listing["city"] }}</p>
+    <img src="{{ img_url }}" class="rounded-box w-80"/>
+  </label>
+</label>
+    <!-- End modal -->
+    </div>
+    {% endfor %}
+    <!-- Carousel content end -->
+  </div>
+  <div class="card-body -mb-2">
+    <h3 class="card-title">{{ listing["address"] }}, {{ listing["city"] }}</h3>
+    <p>{{ listing["listing_info"]|truncate(140) }}</p>
+    <div class="card-actions grid grid-cols-2 mt-">
+      <h4 class="card-title justify-start">Monthly: {{ listing["rent"] }}€</h4>
+      <button class="btn btn-outline btn-success normal-case">
+        <a href="/rentals/{{ listing["id"] }}">Rent Now</a>
+      </button>
+      <div class="bp-3 -mt-7 text-xs">No agency fees & deposit</div>
+    </div>
+  </div>
+</div>
+
+<!-- Card content 1 end -->
+
+<div class="divider"></div>
+
+{% endfor %}
+
+
+<div class="btn-group grid grid-cols-2 mt-4 mb-4">
+  <button class="btn btn-outline btn-secondary normal-case"><a href={{ response["pagination"]["previous"] }}>Previous</a></button>
+  <button class="btn btn-outline btn-secondary normal-case"><a href={{ response["pagination"]["next"] }}>Next</a></button>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<script
+  src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+  defer
+></script>
+{% extends "user_admin_base.html" %}{% block title %}Listing{% endblock %} {%
+block content %}
+
+<!-- Card content 1 -->
+<div
+  class="carousel carousel-center max-w-md p-4 space-x-4 bg-gray-100 rounded-box rounded-lg"
+>
+  <!-- Carousel content start -->
+  {% for img_url in img_urls.split(", ") %}
+  <div class="carousel-item">
+    <img src="{{img_url}}" class="rounded-box rounded-lg h-56" />
+  </div>
+  {% endfor %}
+
+  <!-- Carousel content end -->
+</div>
+
+<div class="card-body -mt-5 -ml-5 -mr-5">
+  <h4 class="card-title text-2xl">{{ address }}, {{ city }}</h4>
+  <div class="grid grid-cols-2">
+    <p class="text-sm">{{ rent }}€/month</p>
+    <p class="text-sm">No agency fees & deposit</p>
+  </div>
+  <h3 class="text-secondary">Information from the Landlord</h3>
+  <p class="text-justify break-all max-width">{{ listing_info }}</p>
+  <h4 class="text-secondary">Basic Characteristics</h4>
+  <ul class="grid grid-cols-2">
+    <li>{{ squaremetres }} m² built</li>
+    {% if furnished == True %}
+    <li>Furnished</li>
+    {% else %}
+    <li>Not furnished</li>
+    {% endif %}
+    <li>{{ rooms }} Rooms</li>
+    {% if equipped == True %}
+    <li>Equipped</li>
+    {% else %}
+    <li>Not equipped</li>
+    {% endif %}
+    <li>{{ bathrooms }} bathrooms</li>
+    <li>{{ bedrooms }} bedrooms</li>
+  </ul>
+  <h4 class="text-secondary">Building Characteristics</h4>
+  <ul class="grid grid-cols-2">
+    <li>{{ inside }}</li>
+    <li>{{ floor }}</li>
+    {% if elevator == True %}
+    <li>Elevator</li>
+    {% else %}
+    <li>No elevator</li>
+    {% endif %} {% if doorman == True %}
+    <li>Doorman</li>
+    {% else %}
+    <li>No doorman</li>
+    {% endif %}
+  </ul>
+  {% if energy_label == 'A' %}
+  <p class="text-green-900">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% elif energy_label == 'B' %}
+  <p class="text-green-600">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% elif energy_label == 'C' %}
+  <p class="text-green-400">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% elif energy_label == 'D' %}
+  <p class="text-yellow-400">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% elif energy_label == 'E' %}
+  <p class="text-yellow-600">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% elif energy_label == 'F' %}
+  <p class="text-yellow-800">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% elif energy_label == 'G' %}
+  <p class="text-red-600">
+    Consumption: {{ energy_label }} {{ energy_consumption }} kWh/m² year
+  </p>
+  {% endif %}
+</div>
+
+{% if vid_url == "No video" %}
+<div class="btn-group grid grid-cols-2 -mt-2 mb-2">
+  {% else %}
+  <div style="max-width: px">
+    <video src="{{ vid_url }}" controls autoplay muted class="-mt-4"></video>
+  </div>
+  <div class="btn-group grid grid-cols-2 mt-4 mb-2">
+    {% endif %}
+
+    <button class="btn btn-primary normal-case">Phone call</button>
+    <button class="btn btn-primary normal-case">Send email</button>
+  </div>
+
+  {% endblock %}
+</div>

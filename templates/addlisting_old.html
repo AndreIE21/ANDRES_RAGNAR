@@ -1,0 +1,324 @@
+<!DOCTYPE html> {% extends "landlord_admin_base.html" %} {% block title %}Add
+Listing{% endblock %} {% block content %}
+
+<div class="card-body -mt-5 -ml-5 -mr-5">
+  <h1 class="text-2xl text-center text-primary">Add Listing</h1>
+
+  <form method="POST">
+    <!-- Address here -->
+
+    <label class="label">
+      <span class="label-text">Address of the listing</span>
+    </label>
+    <input
+      id="list_address"
+      name="address"
+      type="text"
+      placeholder="Enter address"
+      class="input input-bordered input-primary w-full"
+    />
+
+    <!-- City here -->
+
+    <label class="label">
+      <span class="label-text">City of the listing</span>
+    </label>
+    <input
+      id="list_city"
+      name="city"
+      type="text"
+      placeholder="Enter city"
+      class="input input-bordered input-primary w-full"
+    />
+
+    <!-- Rent here -->
+
+    <label class="label">
+      <span class="label-text">Rent amount (in Euros)</span>
+    </label>
+    <input
+      id="list_rent"
+      name="rent"
+      type="number"
+      placeholder="Enter rent amount"
+      class="input input-bordered input-primary w-full"
+    />
+
+    <!-- Agency fees & deposit here -->
+
+    <div class="form-control">
+      <label class="cursor-pointer label mt-3">
+        <span class="label-text text-lg">No agency fees & deposit</span>
+        <input
+          type="checkbox"
+          class="checkbox checkbox-secondary"
+          disabled
+          checked
+        />
+      </label>
+    </div>
+
+    <!-- information text-box here -->
+    <label class="label">
+      <span class="label-text">Information about the listing</span>
+    </label>
+
+    <textarea
+      id="list_info"
+      name="listing_info"
+      class="textarea textarea-primary w-full"
+      placeholder="Enter Information"
+    ></textarea>
+
+    <!-- textbox end -->
+
+    <!-- Basic Characteristics start -->
+
+    <label class="label">
+      <span class="label-text">Add Basic Characteristics</span>
+    </label>
+    <div class="grid grid-cols-2 gap-4">
+      <input
+        id="list_area"
+        name="squaremetres"
+        type="number"
+        placeholder="Squaremetres of the area"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+      />
+      <input
+        id="list_rooms"
+        name="rooms"
+        type="number"
+        placeholder="Number of rooms"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+      />
+      <input
+        id="list_bedrooms"
+        name="bedrooms"
+        type="number"
+        placeholder="Number of bedrooms"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+      />
+      <input
+        id="list_bathrooms"
+        name="bathrooms"
+        type="number"
+        placeholder="Number of bathrooms"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+      />
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Furnished</span>
+          <input
+            id="list_furnished"
+            name="furnished"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Kitchen Equipped</span>
+          <input
+            id="list_equipped"
+            name="equipped"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+    </div>
+
+    <!-- Basic Characteristics end -->
+
+    <!-- Building Characteristics start -->
+
+    <label class="label">
+      <span class="label-text">Add Building Characteristics</span>
+    </label>
+    <div class="grid grid-cols-2 gap-4">
+      <select
+        id="list_floor"
+        name="floor"
+        class="select select-bordered select-primary select-xs w-full max-w-xs"
+      >
+        <option disabled selected>Select floor</option>
+        {% for floor in [0, 1, 2, 3, 4, 5, 6] %}
+        <option>{{ floor }}</option>
+        {% endfor %}
+      </select>
+      <select
+        id="list_inside"
+        name="inside"
+        class="select select-bordered select-primary select-xs w-full max-w-xs"
+      >
+        <option disabled selected>Inside/Outside</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Doorman</span>
+          <input
+            id="list_doorman"
+            name="doorman"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text text-sm">Elevator</span>
+          <input
+            id="list_elevator"
+            name="elevator"
+            type="checkbox"
+            class="checkbox checkbox-secondary checkbox-sm"
+          />
+        </label>
+      </div>
+    </div>
+
+    <!-- Building Characteristics end -->
+
+    <!-- Energy consumption start -->
+
+    <label class="label">
+      <span class="label-text">Energy Consumption</span>
+    </label>
+    <div class="grid grid-cols-2 gap-4">
+      <select
+        id="list_energy_label"
+        name="energy_label"
+        class="select select-bordered select-primary select-xs w-full max-w-xs"
+      >
+        <option disabled selected>Consumption Label</option>
+        <option class="bg-green-900">A</option>
+        <option class="bg-green-600">B</option>
+        <option class="bg-green-400">C</option>
+        <option class="bg-yellow-400">D</option>
+        <option class="bg-yellow-600">E</option>
+        <option class="bg-yellow-800">F</option>
+        <option class="bg-red-600">G</option>
+      </select>
+      <input
+        id="list_energy_consumption"
+        name="energy_consumption"
+        type="number"
+        placeholder="Consumption in kWh/m² year"
+        class="input input-bordered input-xs input-primary w-full max-w-xs"
+      />
+    </div>
+
+    <!-- Energy consumption end -->
+
+    <!-- Image upload start -->
+    <div class="mt-4">
+      <label class="label">
+        <span class="label-text">Upload Multiple Images</span>
+      </label>
+      <input
+        id="list_images"
+        name="images"
+        accept="image/*"
+        class="block w-full text-sm rounded-lg border border-primary"
+        type="file"
+        multiple
+      />
+    </div>
+
+    <!-- Image upload end -->
+
+    <button class="btn btn-primary mt-5 normal-case w-full" type="button" onclick="addListing()">
+      Add listing
+    </button>
+  </form>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script type="application/javascript">
+  const token = localStorage.getItem("TOKEN") || ""
+  authCheck ();
+
+  async function authCheck() {
+    const response = await axios.post("/api/user/auth", {token: token})
+    if (!response.data.success) {
+      window.location.href = "/user_login"
+    }
+    if (response.data.type === "user") {
+      window.location.href = "/listing"
+    }
+  }
+
+
+  async function addListing() {
+    const _headers = {Authorization: `Bearer ${token}`}
+    let _forward = true
+
+    const data = {
+      address: document.getElementById("list_address").value,
+      city: document.getElementById("list_city").value,
+      rent_amount: document.getElementById("list_rent").value,
+      information: document.getElementById("list_info").value,
+      area: document.getElementById("list_area").value,
+      num_of_rooms: document.getElementById("list_rooms").value,
+      num_of_bedrooms: document.getElementById("list_bedrooms").value,
+      num_of_bathrooms: document.getElementById("list_bathrooms").value,
+      furnished: document.getElementById("list_furnished").value,
+      kitchen_equipped: document.getElementById("list_equipped").value,
+      floor_number: document.getElementById("list_floor").value,
+      inside_outside: document.getElementById("list_inside").value,
+      has_doorman: document.getElementById("list_doorman").value,
+      has_elevator: document.getElementById("list_elevator").value,
+      energy_consumption_level: document.getElementById("list_energy_label").value,
+      energy_consumption: document.getElementById("list_energy_consumption").value,
+      image_urls: []
+    }
+
+    const _imgUrls = document.getElementById("list_images").files
+    const imgFormData = new FormData()
+    for (let i=0; i<_imgUrls.length; i++) {
+      imgFormData.append("files", _imgUrls[i])
+    }
+    
+    try {
+      if (_imgUrls.length > 0) {
+        const imageResponse = await axios.post("/api/listings/image-upload", imgFormData, { headers: _headers })
+        console.log(imageResponse)
+        if (imageResponse && imageResponse.status === 200) {
+          for(let i=0; i<imageResponse.data.length; i++) {
+            data.image_urls.push(imageResponse.data[i].path)
+          }
+        } else {
+          _forward = false
+          console.log(imageResponse)
+        }
+      }
+    } catch (e) {
+      _forward = false
+      console.log(e.response)
+    }
+
+    
+    try {
+      if (_forward) {
+        const response = await axios.post("/api/listings", data, { headers: _headers })
+        if (response && response.data.success) {
+          alert("Listing added successfully.")
+          window.location.href = "/listing"
+        }
+      }
+    } catch (e) {
+      console.log(e.response)
+    }
+    
+
+    
+  }
+</script>
+{% endblock %}

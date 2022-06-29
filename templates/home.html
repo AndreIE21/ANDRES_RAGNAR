@@ -1,0 +1,18 @@
+
+<!DOCTYPE html> {% extends "user_admin_base.html" %}{% block title %}Documents{%
+    endblock %} {% block content %}
+      <h1 class="text-3xl text-primary text-center mb-6">Your Renter Score</h1>
+        <div class="radial-progress text-primary text-4xl mt-2 mb-2 ml-2" style="--value:60; --size:18rem;">60%</div>
+      <p class="text-lg ml-2 mb-2 mt-5">Get your depositless rental!</p>
+      <div class="card card-compact w-80 bg-300 border shadow-2xl">
+      <ul class="steps steps-vertical ml-4">
+        <li class="step step-primary"><a class="underline underline-offset-1" href="/documents">Add Documents</a></li>
+        <li class="step step-primary"><a class="underline underline-offset-1" href="/rentals">Find Rental</a></li>
+        <li class="step">Contact Owner</li>
+        <li class="step">Sign Agreement (Coming soon!)</li>
+        <li class="step">Report Damages (Coming soon!)</li>
+      </ul>
+    </div>
+    
+        {% endblock content %}
+    </div>
