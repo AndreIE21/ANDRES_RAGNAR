@@ -18,7 +18,10 @@ cloudinary.config(
 #SQLALCHEMY_DABASE_URL = "sqlite:///./solomon.db"
 
 
-SQLALCHEMY_DABASE_URL = "postgresql://postgres:1234!@localhost/SolomonJuliusDatabase"
+SQLALCHEMY_DABASE_URL = os.environ.get("DATABASE_URL")
+if SQLALCHEMY_DABASE_URL.startswith("postgres://"):
+  SQLALCHEMY_DABASE_URL = SQLALCHEMY_DABASE_URL.replace("postgres://", "postgresql://", 1)
+
 
 engine  = create_engine(
     SQLALCHEMY_DABASE_URL)
