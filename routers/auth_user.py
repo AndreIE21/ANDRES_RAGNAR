@@ -182,7 +182,7 @@ async def register_user(request: Request,
     db.commit()
 
     msg = "User created with success"
-    return templates.TemplateResponse("home.html", {"request": request, "msg": msg})
+    return templates.TemplateResponse("user_login.html", {"request": request, "msg": msg})
 
 
 
