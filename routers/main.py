@@ -6,7 +6,6 @@ import models as models
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
-from raphanow.routers.auth import get_current_user, get_user_exception
 from typing import List 
 import shutil
 
