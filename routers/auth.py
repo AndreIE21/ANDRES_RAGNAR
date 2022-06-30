@@ -162,7 +162,7 @@ async def logout(request: Request):
 
 @router.get("/landlord_signup", response_class=HTMLResponse)
 async def register(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+    return templates.TemplateResponse("landlord_signup.html", {"request": request})
 
 @router.post("/landlord_signup", response_class=HTMLResponse)
 async def register_user(request: Request, 
@@ -188,7 +188,7 @@ async def register_user(request: Request,
     db.commit()
 
     msg = "User created with success"
-    return templates.TemplateResponse("getstarted.html", {"request": request, "msg": msg})
+    return templates.TemplateResponse("landlord_login.html", {"request": request, "msg": msg})
 
 
 
