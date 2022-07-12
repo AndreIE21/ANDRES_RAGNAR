@@ -8,9 +8,9 @@ import cloudinary.uploader
 import cloudinary.api
 
 cloudinary.config( 
-  cloud_name = "dxhdxbedp", 
-  api_key = "552497812426217", 
-  api_secret = "HTsyA53RosfW3btxsZF_qKS1hQU",
+  cloud_name = "", 
+  api_key = "", 
+  api_secret = "",
 )
 
 
